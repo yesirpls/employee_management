@@ -1,0 +1,31 @@
+{% extends 'employees/base.html' %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            <h2>{{ employee.first_name }} {{ employee.last_name }}</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Email:</strong> {{ employee.email }}</p>
+                    <p><strong>Phone:</strong> {{ employee.phone }}</p>
+                    <p><strong>Address:</strong> {{ employee.address }}</p>
+                    <p><strong>Gender:</strong> {{ employee.get_gender_display }}</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Department:</strong> {{ employee.department }}</p>
+                    <p><strong>Position:</strong> {{ employee.position }}</p>
+                    <p><strong>Salary:</strong> ${{ employee.salary }}</p>
+                    <p><strong>Hire Date:</strong> {{ employee.hire_date }}</p>
+                    <p><strong>Status:</strong> {% if employee.is_active %}Active{% else %}Inactive{% endif %}</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <a href="{% url 'employee_update' employee.pk %}" class="btn btn-warning">Edit</a>
+            <a href="{% url 'employee_delete' employee.pk %}" class="btn btn-danger">Delete</a>
+            <a href="{% url 'employee_list' %}" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+{% endblock %}
